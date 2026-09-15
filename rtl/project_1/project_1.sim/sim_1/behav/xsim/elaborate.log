@@ -1,0 +1,17 @@
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: F:/Vivado/latest_version_2025/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_conv3x3x3_pixel_fixpt_behav xil_defaultlib.tb_conv3x3x3_pixel_fixpt xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "C:/Users/user/Desktop/SHREYASHREE/files/systolic_cnn/rtl/conv3x3x3_pixel_fixpt_pkg.sv" Line 13. Module conv3x3x3_pixel_fixpt_pkg doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package xil_defaultlib.conv3x3x3_pixel_fixpt_pkg
+Compiling module xil_defaultlib.conv3x3x3_pixel_fixpt
+Compiling module xil_defaultlib.tb_conv3x3x3_pixel_fixpt
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_conv3x3x3_pixel_fixpt_behav

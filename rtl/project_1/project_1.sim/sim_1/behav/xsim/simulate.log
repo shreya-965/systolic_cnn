@@ -1,0 +1,8 @@
+Time resolution is 1 ps
+image_mem[0]    = 3b
+filter_mem[0]   = 03
+expected_mem[0] = 000000c6
+DUT output     : 198
+Expected output: 198
+TEST PASSED
+$finish called at time : 1 ns : File "C:/Users/user/Desktop/SHREYASHREE/files/systolic_cnn/rtl/tb_conv3x3x3_pixel_fixpt.sv" Line 88
