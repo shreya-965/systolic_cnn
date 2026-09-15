@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function output = conv3x3x3_pixel_wrapper_fixpt(image_window,filter)
     fm = get_fimath();
-    image_window_in = fi( image_window, 0, 6, 0, fm );
+    image_window_in = fi( image_window, 0, 8, 0, fm );
     filter_in = fi( filter, 1, 3, 0, fm );
     [output_out] = conv3x3x3_pixel_fixpt( image_window_in, filter_in );
     output = int32( output_out );

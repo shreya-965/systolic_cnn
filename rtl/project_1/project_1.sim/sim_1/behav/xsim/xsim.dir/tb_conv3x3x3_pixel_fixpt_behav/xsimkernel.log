@@ -1,4 +1,7 @@
-Running: xsim.dir/tb_conv3x3x3_pixel_fixpt_behav/xsimk.exe -simmode gui -wdb tb_conv3x3x3_pixel_fixpt_behav.wdb -simrunnum 0 -socket 57400
+Running: xsim.dir/tb_conv3x3x3_pixel_fixpt_behav/xsimk.exe -simmode gui -wdb tb_conv3x3x3_pixel_fixpt_behav.wdb -simrunnum 0 -socket 52693
 Design successfully loaded
-Design Loading Memory Usage: 11000 KB (Peak: 11000 KB)
-Design Loading CPU Usage: 46 ms
+Design Loading Memory Usage: 10956 KB (Peak: 10956 KB)
+Design Loading CPU Usage: 61 ms
+Simulation completed
+Simulation Memory Usage: 14972 KB (Peak: 14972 KB)
+Simulation CPU Usage: 124 ms

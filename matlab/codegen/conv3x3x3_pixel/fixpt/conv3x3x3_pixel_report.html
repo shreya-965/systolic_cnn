@@ -30,7 +30,7 @@
 </style>
 </head>
 <body>
-<h3>Generated on  2026-09-15 12:09:08</h3>
+<h3>Generated on  2026-09-15 23:22:32</h3>
 <p>The following table shows fixed point instrumentation results</p>
 <h2>Fixed-Point Report <span>conv3x3x3_pixel<span></h2>
 <TABLE class="code">
@@ -44,19 +44,15 @@
 
 acc = int32(0);
 
+for kr = 1:3
 </pre></TD>
 </TR>
 <TR>
 <TD class="cov black" style="background-color: rgb(255,160,118);">Once</TD>
-<TD class="padd"><pre>for kr = 1:3
-</pre></TD>
-</TR>
-<TR>
-<TD class="cov white" style="background-color: rgb(157,38,35);">0%</TD>
 <TD class="padd"><pre>        for kc = 1:3
                 for ch = 1:3
-                        pixel = int32(image_window(kr, kc, ch));
-                        weight = int32(filter(kr, kc, ch));
+                        pixel = int32(image_window(kr,kc,ch));
+                        weight = int32(filter(kr,kc,ch));
                         acc = acc + pixel * weight;
                 end</pre></TD>
 </TR>
@@ -72,21 +68,21 @@ end</pre></TD>
 </TR>
 </TABLE>
 <TABLE><TR class="h"><th>Variable Name</th><th>Type</th><th>Sim Min</th><th>Sim Max</th><th>Static Min</th><th>Static Max</th><th>Whole Number</th><th>ProposedType <BR /> (Best For WL = 14)</th></TR><TR class="a">
-<TD class="left">acc</TD><TD class="left">int32</TD><TD class="right">0</TD><TD class="right">266</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 9, 0)</TD></TR>
+<TD class="left">acc</TD><TD class="left">int32</TD><TD class="right">0</TD><TD class="right">3913</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 12, 0)</TD></TR>
 <TR class="b">
 <TD class="left">ch</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">3</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 2, 0)</TD></TR>
 <TR class="a">
 <TD class="left">filter</TD><TD class="left">int8 3 x 3 x 3 </TD><TD class="right">-2</TD><TD class="right">3</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 3, 0)</TD></TR>
 <TR class="b">
-<TD class="left">image_window</TD><TD class="left">uint8 3 x 3 x 3 </TD><TD class="right">0</TD><TD class="right">63</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 6, 0)</TD></TR>
+<TD class="left">image_window</TD><TD class="left">uint8 3 x 3 x 3 </TD><TD class="right">0</TD><TD class="right">255</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 8, 0)</TD></TR>
 <TR class="a">
 <TD class="left">kc</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">3</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 2, 0)</TD></TR>
 <TR class="b">
 <TD class="left">kr</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">3</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 2, 0)</TD></TR>
 <TR class="a">
-<TD class="left">output</TD><TD class="left">int32</TD><TD class="right">198</TD><TD class="right">198</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 8, 0)</TD></TR>
+<TD class="left">output</TD><TD class="left">int32</TD><TD class="right">84</TD><TD class="right">3432</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 12, 0)</TD></TR>
 <TR class="b">
-<TD class="left">pixel</TD><TD class="left">int32</TD><TD class="right">0</TD><TD class="right">63</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 6, 0)</TD></TR>
+<TD class="left">pixel</TD><TD class="left">int32</TD><TD class="right">0</TD><TD class="right">255</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 8, 0)</TD></TR>
 <TR class="a">
 <TD class="left">weight</TD><TD class="left">int32</TD><TD class="right">-2</TD><TD class="right">3</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 3, 0)</TD></TR>
 </TABLE>

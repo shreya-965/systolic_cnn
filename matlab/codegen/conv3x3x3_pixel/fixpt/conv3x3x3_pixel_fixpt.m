@@ -8,19 +8,19 @@ function output = conv3x3x3_pixel_fixpt(image_window, filter)
 
 fm = get_fimath();
 
-acc = fi(int32(0), 0, 9, 0, fm);
+acc = fi(int32(0), 0, 12, 0, fm);
 
 for kr = 1:3
         for kc = 1:3
                 for ch = 1:3
-                        pixel = fi(int32(image_window(kr, kc, ch)), 0, 6, 0, fm);
-                        weight = fi(int32(filter(kr, kc, ch)), 1, 3, 0, fm);
+                        pixel = fi(int32(image_window(kr,kc,ch)), 0, 8, 0, fm);
+                        weight = fi(int32(filter(kr,kc,ch)), 1, 3, 0, fm);
                         acc(:) = acc + pixel * weight;
                 end
         end
 end
 
-output = fi(acc, 0, 8, 0, fm);
+output = fi(acc, 0, 12, 0, fm);
 
 end
 
