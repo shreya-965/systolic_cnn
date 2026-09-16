@@ -1,1 +1,0 @@
---incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "uvm" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "tb_conv3x3x3_pixel_fixpt_behav" "xil_defaultlib.tb_conv3x3x3_pixel_fixpt" "xil_defaultlib.glbl" -log "elaborate.log" 

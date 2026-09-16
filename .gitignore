@@ -1,0 +1,30 @@
+# Vivado generated files
+**/.Xil/
+**/*.jou
+**/*.log
+**/*.str
+**/*.pb
+**/*.wdb
+
+# Vivado project generated directories
+**/*.cache/
+**/*.sim/
+**/ip_user_files/
+**/*.runs/
+**/*.gen/
+
+# Vivado generated simulation/build artifacts
+**/xsim.dir/
+**/compile.bat
+**/elaborate.bat
+**/simulate.bat
+
+# MATLAB generated files
+**/codegen/
+**/slprj/
+**/hdlsrc/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/

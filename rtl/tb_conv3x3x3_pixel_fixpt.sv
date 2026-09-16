@@ -26,10 +26,9 @@ conv3x3x3_pixel_fixpt dut (
 );
 
 initial begin
-        $readmemh("C:/Users/user/Desktop/SHREYASHREE/files/systolic_cnn/dataset/image.hex",image_mem);
-        $readmemh("C:/Users/user/Desktop/SHREYASHREE/files/systolic_cnn/dataset/filter.hex",filter_mem);
-        $readmemh("C:/Users/user/Desktop/SHREYASHREE/files/systolic_cnn/dataset/expected.hex",expected_mem);
-
+$readmemh("image.hex",image_mem);
+$readmemh("filter.hex",filter_mem);
+$readmemh("expected.hex",expected_mem);
         errors = 0;
 
         for(kr = 0; kr < 3; kr = kr + 1) begin

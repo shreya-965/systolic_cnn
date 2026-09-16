@@ -1,8 +1,0 @@
-Time resolution is 1 ps
-row=0 col=0 DUT=198 EXPECTED=198
-row=0 col=1 DUT=248 EXPECTED=248
-row=0 col=2 DUT=467 EXPECTED=467
-row=0 col=3 DUT=771 EXPECTED=771
-row=0 col=4 DUT=1133 EXPECTED=1133
-TEST PASSED
-$finish called at time : 900 ns : File "C:/Users/user/Desktop/SHREYASHREE/files/systolic_cnn/rtl/tb_conv3x3x3_pixel_fixpt.sv" Line 76
