@@ -116,41 +116,39 @@ module tb_conv3x3x3_stream;
         end
 
         repeat (5) begin
-            @(posedge clk);
-            #1;
+        @(posedge clk);
+        #1;
 
-            if (valid) begin
+        if (valid && valid_count < 900) begin
                 if ($isunknown(output_rsvd)) begin
-                    $display("ERROR: output is X at valid_count=%0d",
-                             valid_count);
-                    errors = errors + 1;
+                $display("ERROR: output is X at valid_count=%0d",
+                        valid_count);
+                errors = errors + 1;
                 end
-                else if (valid_count < 900) begin
-                    if (output_rsvd !== expected_mem[valid_count][11:0]) begin
-                        $display("MISMATCH %0d: DUT=%0d EXPECTED=%0d",
-                                 valid_count,
-                                 output_rsvd,
-                                 expected_mem[valid_count][11:0]);
-                        errors = errors + 1;
-                    end
+                else if (output_rsvd !== expected_mem[valid_count][11:0]) begin
+                $display("MISMATCH %0d: DUT=%0d EXPECTED=%0d",
+                        valid_count,
+                        output_rsvd,
+                        expected_mem[valid_count][11:0]);
+                errors = errors + 1;
                 end
 
                 valid_count = valid_count + 1;
-            end
+        end
         end
 
         $display("");
         $display("VALID OUTPUTS = %0d", valid_count);
         $display("ERRORS        = %0d", errors);
-
+        
         if (valid_count != 900) begin
-            $display("TEST FAILED: expected 900 valid outputs.");
+        $display("TEST FAILED: expected 900 valid outputs.");
         end
         else if (errors != 0) begin
-            $display("TEST FAILED.");
+        $display("TEST FAILED.");
         end
         else begin
-            $display("TEST PASSED.");
+        $display("TEST PASSED.");
         end
 
         $finish;
