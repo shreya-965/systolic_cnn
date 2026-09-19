@@ -18,13 +18,13 @@
     <param.hdl.BuildDirectory>option.hdl.ProjectDirectory</param.hdl.BuildDirectory>
     <param.hdl.BuildSpecifiedDirectory />
     <param.hdl.FrameToSampleFlag>false</param.hdl.FrameToSampleFlag>
-    <param.fixptconv.InstrumentedMexFile>${PROJECT_ROOT}\codegen\conv3x3x3_stream\fixpt\conv3x3x3_stream_float_mex.mexw64</param.fixptconv.InstrumentedMexFile>
-    <param.fixptconv.InstrumentedBuildChecksum>33322055</param.fixptconv.InstrumentedBuildChecksum>
+    <param.fixptconv.InstrumentedMexFile>${PROJECT_ROOT}\codegen\systolic_4x4\fixpt\systolic_4x4_float_mex.mexw64</param.fixptconv.InstrumentedMexFile>
+    <param.fixptconv.InstrumentedBuildChecksum>3462729095</param.fixptconv.InstrumentedBuildChecksum>
     <param.fixptconv.ShowCoverage>true</param.fixptconv.ShowCoverage>
-    <param.fixptconv.FixedPointValidationChecksum>4251215028</param.fixptconv.FixedPointValidationChecksum>
-    <param.fixptconv.FixedPointSourceCodeChecksum>697784672</param.fixptconv.FixedPointSourceCodeChecksum>
+    <param.fixptconv.FixedPointValidationChecksum>1575687159</param.fixptconv.FixedPointValidationChecksum>
+    <param.fixptconv.FixedPointSourceCodeChecksum>3547224009</param.fixptconv.FixedPointSourceCodeChecksum>
     <param.fixptconv.FixedPointStaticAnalysisChecksum />
-    <param.fixptconv.DefaultTestFile>${PROJECT_ROOT}\test_conv3x3x3_stream.m</param.fixptconv.DefaultTestFile>
+    <param.fixptconv.DefaultTestFile>${PROJECT_ROOT}\test_systolic_4x4.m</param.fixptconv.DefaultTestFile>
     <param.fixptconv.ExcludedFixedPointVerificationFiles />
     <param.fixptconv.ExcludedFixedPointSimulationFiles />
     <param.fixptconv.FixptProposalKind>option.fixptconv.ProposeFracLenBasedOnWordLen</param.fixptconv.FixptProposalKind>
@@ -35,17 +35,29 @@
     <param.fixptconv.ProposeUsingDesignMinMaxAnd>option.fixptconv.ProposeUsingDesignMinMaxAnd.SimAndDerivedMinMax</param.fixptconv.ProposeUsingDesignMinMaxAnd>
     <param.transformedVariables>
       <UserEntities>
-        <Function file="$(PROJECTDIR)\conv3x3x3_stream.m" name="conv3x3x3_stream" specialization="conv3x3x3_stream" specializationId="-1" uniqueId="conv3x3x3_stream">
+        <Function file="$(PROJECTDIR)\systolic_4x4.m" name="systolic_4x4" specialization="systolic_4x4" specializationId="-1" uniqueId="systolic_4x4">
           <Variable name="output" specid="-1">
             <Column property="LoggingEnabled" type="Boolean" value="true" />
           </Variable>
           <Variable name="valid" specid="-1">
             <Column property="LoggingEnabled" type="Boolean" value="true" />
           </Variable>
+          <Variable name="ready" specid="-1">
+            <Column property="LoggingEnabled" type="Boolean" value="true" />
+          </Variable>
           <Variable name="pixel" specid="-1">
             <Column property="LoggingEnabled" type="Boolean" value="true" />
           </Variable>
-          <Variable name="filter" specid="-1">
+          <Variable name="filter0" specid="-1">
+            <Column property="LoggingEnabled" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="filter1" specid="-1">
+            <Column property="LoggingEnabled" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="filter2" specid="-1">
+            <Column property="LoggingEnabled" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="filter3" specid="-1">
             <Column property="LoggingEnabled" type="Boolean" value="true" />
           </Variable>
           <Variable name="reset" specid="-1">
@@ -54,35 +66,50 @@
           <Variable name="line1" specid="-1" />
           <Variable name="line2" specid="-1" />
           <Variable name="window" specid="-1" />
+          <Variable name="weights" specid="-1" />
+          <Variable name="pe_acc" specid="-1" />
           <Variable name="row" specid="-1" />
           <Variable name="col" specid="-1" />
-          <Variable name="output_reg" specid="-1" />
-          <Variable name="valid_reg" specid="-1" />
+          <Variable name="state" specid="-1" />
+          <Variable name="cycle" specid="-1" />
           <Variable name="top_word" specid="-1" />
           <Variable name="middle_word" specid="-1" />
-          <Variable name="top" specid="-1" />
-          <Variable name="middle" specid="-1" />
-          <Variable name="next_window" specid="-1" />
-          <Variable name="ch" specid="-1" />
-          <Variable name="acc" specid="-1" />
+          <Variable name="top_r" specid="-1" />
+          <Variable name="top_g" specid="-1" />
+          <Variable name="top_b" specid="-1" />
+          <Variable name="middle_r" specid="-1" />
+          <Variable name="middle_g" specid="-1" />
+          <Variable name="middle_b" specid="-1" />
+          <Variable name="new_window" specid="-1" />
+          <Variable name="p" specid="-1" />
           <Variable name="kr" specid="-1" />
           <Variable name="kc" specid="-1" />
+          <Variable name="ch" specid="-1" />
+          <Variable name="next_acc" specid="-1" />
+          <Variable name="f" specid="-1" />
+          <Variable name="lane" specid="-1" />
+          <Variable name="pe" specid="-1" />
+          <Variable name="index" specid="-1" />
+          <Variable name="cycle * 4 + lane" specid="-1" />
+          <Variable name="activation" specid="-1" />
+          <Variable name="weight" specid="-1" />
+          <Variable name="f * 27 + index" specid="-1" />
         </Function>
       </UserEntities>
     </param.transformedVariables>
     <param.computedVariables>
       <ComputedEntities>
-        <Function file="$(PROJECTDIR)\conv3x3x3_stream.m" name="conv3x3x3_stream" specialization="conv3x3x3_stream" specializationId="-1" uniqueId="conv3x3x3_stream">
+        <Function file="$(PROJECTDIR)\systolic_4x4.m" name="systolic_4x4" specialization="systolic_4x4" specializationId="-1" uniqueId="systolic_4x4">
           <Variable name="output" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="3432.0" />
+            <Column property="SimMin" type="Double" value="-1689.0" />
+            <Column property="SimMax" type="Double" value="3426.0" />
             <MATLABType class="int32" complex="false">
-              <size>1</size>
+              <size>4</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 12, 0)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 13, 0)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Wrap" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -94,6 +121,26 @@
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
           <Variable name="valid" specid="-1">
+            <Column property="Kind" type="String" value="output" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="1.0" />
+            <MATLABType class="logical" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 1, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="ready" specid="-1">
             <Column property="Kind" type="String" value="output" />
             <Column property="SimMin" type="Double" value="0.0" />
             <Column property="SimMax" type="Double" value="1.0" />
@@ -133,9 +180,72 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
-          <Variable name="filter" specid="-1">
+          <Variable name="filter0" specid="-1">
+            <Column property="Kind" type="String" value="input" />
+            <Column property="SimMin" type="Double" value="-3.0" />
+            <Column property="SimMax" type="Double" value="3.0" />
+            <MATLABType class="int8" complex="false">
+              <size>3</size>
+              <size>3</size>
+              <size>3</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 3, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="filter1" specid="-1">
+            <Column property="Kind" type="String" value="input" />
+            <Column property="SimMin" type="Double" value="-3.0" />
+            <Column property="SimMax" type="Double" value="3.0" />
+            <MATLABType class="int8" complex="false">
+              <size>3</size>
+              <size>3</size>
+              <size>3</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 3, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="filter2" specid="-1">
             <Column property="Kind" type="String" value="input" />
             <Column property="SimMin" type="Double" value="-2.0" />
+            <Column property="SimMax" type="Double" value="3.0" />
+            <MATLABType class="int8" complex="false">
+              <size>3</size>
+              <size>3</size>
+              <size>3</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 3, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="filter3" specid="-1">
+            <Column property="Kind" type="String" value="input" />
+            <Column property="SimMin" type="Double" value="-3.0" />
             <Column property="SimMax" type="Double" value="3.0" />
             <MATLABType class="int8" complex="false">
               <size>3</size>
@@ -219,9 +329,8 @@
             <Column property="SimMin" type="Double" value="0.0" />
             <Column property="SimMax" type="Double" value="255.0" />
             <MATLABType class="uint8" complex="false">
-              <size>3</size>
-              <size>3</size>
-              <size>3</size>
+              <size>27</size>
+              <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
             <Column property="ProposedType" type="String" value="uint8" />
@@ -235,16 +344,56 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
+          <Variable name="weights" specid="-1">
+            <Column property="Kind" type="String" value="persistent" />
+            <Column property="SimMin" type="Double" value="-3.0" />
+            <Column property="SimMax" type="Double" value="3.0" />
+            <MATLABType class="int8" complex="false">
+              <size>108</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 3, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="pe_acc" specid="-1">
+            <Column property="Kind" type="String" value="persistent" />
+            <Column property="SimMin" type="Double" value="-2138.0" />
+            <Column property="SimMax" type="Double" value="2966.0" />
+            <MATLABType class="int32" complex="false">
+              <size>16</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 13, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
           <Variable name="row" specid="-1">
             <Column property="Kind" type="String" value="persistent" />
             <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="32.0" />
+            <Column property="SimMax" type="Double" value="31.0" />
             <MATLABType class="int32" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 6, 0)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 5, 0)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Wrap" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -275,16 +424,16 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
-          <Variable name="output_reg" specid="-1">
+          <Variable name="state" specid="-1">
             <Column property="Kind" type="String" value="persistent" />
             <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="3432.0" />
+            <Column property="SimMax" type="Double" value="1.0" />
             <MATLABType class="int32" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 12, 0)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 1, 0)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Wrap" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -295,16 +444,16 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
-          <Variable name="valid_reg" specid="-1">
+          <Variable name="cycle" specid="-1">
             <Column property="Kind" type="String" value="persistent" />
             <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="1.0" />
-            <MATLABType class="logical" complex="false">
+            <Column property="SimMax" type="Double" value="6.0" />
+            <MATLABType class="int32" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 1, 0)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 3, 0)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Wrap" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -355,13 +504,13 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
-          <Variable name="top" specid="-1">
+          <Variable name="top_r" specid="-1">
             <Column property="Kind" type="String" value="local" />
             <Column property="SimMin" type="Double" value="0.0" />
             <Column property="SimMax" type="Double" value="255.0" />
             <MATLABType class="uint8" complex="false">
               <size>1</size>
-              <size>3</size>
+              <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
             <Column property="ProposedType" type="String" value="uint8" />
@@ -375,13 +524,53 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
-          <Variable name="middle" specid="-1">
+          <Variable name="top_g" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="253.0" />
+            <MATLABType class="uint8" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="uint8" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="top_b" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="235.0" />
+            <MATLABType class="uint8" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="uint8" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="middle_r" specid="-1">
             <Column property="Kind" type="String" value="local" />
             <Column property="SimMin" type="Double" value="0.0" />
             <Column property="SimMax" type="Double" value="255.0" />
             <MATLABType class="uint8" complex="false">
               <size>1</size>
-              <size>3</size>
+              <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
             <Column property="ProposedType" type="String" value="uint8" />
@@ -395,14 +584,53 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
-          <Variable name="next_window" specid="-1">
+          <Variable name="middle_g" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="253.0" />
+            <MATLABType class="uint8" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="uint8" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="middle_b" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="235.0" />
+            <MATLABType class="uint8" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="uint8" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="new_window" specid="-1">
             <Column property="Kind" type="String" value="local" />
             <Column property="SimMin" type="Double" value="0.0" />
             <Column property="SimMax" type="Double" value="255.0" />
             <MATLABType class="uint8" complex="false">
-              <size>3</size>
-              <size>3</size>
-              <size>3</size>
+              <size>27</size>
+              <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
             <Column property="ProposedType" type="String" value="uint8" />
@@ -416,36 +644,16 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
-          <Variable name="ch" specid="-1">
+          <Variable name="p" specid="-1">
             <Column property="Kind" type="String" value="local" />
             <Column property="SimMin" type="Double" value="1.0" />
-            <Column property="SimMax" type="Double" value="3.0" />
+            <Column property="SimMax" type="Double" value="28.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 2, 0)" />
-            <Column property="RoundMode" type="String" value="Floor" />
-            <Column property="OverflowMode" type="String" value="Wrap" />
-            <Column property="ProductMode" type="String" value="FullPrecision" />
-            <Column property="ProductWordLength" type="Double" value="32" />
-            <Column property="ProductFractionLength" type="Double" value="30" />
-            <Column property="SumMode" type="String" value="FullPrecision" />
-            <Column property="SumWordLength" type="Double" value="32" />
-            <Column property="SumFractionLength" type="Double" value="30" />
-            <Column property="CastBeforeSum" type="Boolean" value="true" />
-          </Variable>
-          <Variable name="acc" specid="-1">
-            <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="3913.0" />
-            <MATLABType class="int32" complex="false">
-              <size>1</size>
-              <size>1</size>
-            </MATLABType>
-            <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 12, 0)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 5, 0)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Wrap" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -496,6 +704,180 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
+          <Variable name="ch" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="1.0" />
+            <Column property="SimMax" type="Double" value="3.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 2, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="next_acc" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="-2138.0" />
+            <Column property="SimMax" type="Double" value="2966.0" />
+            <MATLABType class="int32" complex="false">
+              <size>16</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 13, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="f" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="3.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 2, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="lane" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="3.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 2, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="pe" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="1.0" />
+            <Column property="SimMax" type="Double" value="16.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 5, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="index" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="1.0" />
+            <Column property="SimMax" type="Double" value="28.0" />
+            <MATLABType class="int32" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 5, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="cycle * 4 + lane" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <MATLABType class="int32" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+          </Variable>
+          <Variable name="activation" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="255.0" />
+            <MATLABType class="int32" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="uint8" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="weight" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="-3.0" />
+            <Column property="SimMax" type="Double" value="3.0" />
+            <MATLABType class="int32" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 3, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Wrap" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="f * 27 + index" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <MATLABType class="int32" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+          </Variable>
         </Function>
       </ComputedEntities>
     </param.computedVariables>
@@ -521,12 +903,12 @@
     <param.fixptconv.StaticAnalysisTimeout />
     <param.fixptconv.StaticAnalysisGlobalRangesOnly>false</param.fixptconv.StaticAnalysisGlobalRangesOnly>
     <var.lastFixedPointAction>option.fixedPointAction.convert</var.lastFixedPointAction>
-    <var.lastSimContext>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;SimulationContext&gt;&lt;testFiles&gt;&lt;file&gt;C:\Users\user\Desktop\SHREYASHREE\files\systolic_cnn\matlab\test_conv3x3x3_stream.m&lt;/file&gt;&lt;/testFiles&gt;&lt;synthetic&gt;false&lt;/synthetic&gt;&lt;/SimulationContext&gt;</var.lastSimContext>
+    <var.lastSimContext>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;SimulationContext&gt;&lt;testFiles&gt;&lt;file&gt;C:\Users\user\Desktop\SHREYASHREE\files\systolic_cnn\matlab\test_systolic_4x4.m&lt;/file&gt;&lt;/testFiles&gt;&lt;synthetic&gt;false&lt;/synthetic&gt;&lt;/SimulationContext&gt;</var.lastSimContext>
     <var.lastVerifyContext />
-    <param.fpDataRoot>C:\Users\user\Desktop\SHREYASHREE\files\systolic_cnn\matlab\codegen\conv3x3x3_stream\fixpt/guiFpReport.mat</param.fpDataRoot>
+    <param.fpDataRoot>C:\Users\user\Desktop\SHREYASHREE\files\systolic_cnn\matlab\codegen\systolic_4x4\fixpt/guiFpReport.mat</param.fpDataRoot>
     <param.fpUserFileChecksum />
-    <var.snapshotChecksum>2254242870</var.snapshotChecksum>
-    <param.fpLastConvertChecksum>33322055</param.fpLastConvertChecksum>
+    <var.snapshotChecksum>3370397907</var.snapshotChecksum>
+    <param.fpLastConvertChecksum>3462729095</param.fpLastConvertChecksum>
     <var.FixedPointAnalysisMode>option.FixedPointAnalysisMode.Sim</var.FixedPointAnalysisMode>
     <param.FixedPointUseDesignRanges>false</param.FixedPointUseDesignRanges>
     <param.isHLSIPcoreSupported>true</param.isHLSIPcoreSupported>
@@ -537,7 +919,7 @@
     <param.hdl.TargetFrequency>0</param.hdl.TargetFrequency>
     <param.hdl.ReferenceDesign />
     <param.hdl.ReferenceDesignPath />
-    <param.hdl.IPCoreName>conv3x3x3_stream_fixpt_ipcore</param.hdl.IPCoreName>
+    <param.hdl.IPCoreName>systolic_4x4_fixpt_ipcore</param.hdl.IPCoreName>
     <param.hdl.IPCoreVersion>1.0</param.hdl.IPCoreVersion>
     <param.hdl.AdditionalIPFiles />
     <param.hdl.ExecutionMode>option.hdl.FreeRunning</param.hdl.ExecutionMode>
@@ -647,7 +1029,7 @@
     <param.hdl.MultiplierSharingMinimumBitwidth>0</param.hdl.MultiplierSharingMinimumBitwidth>
     <param.hdl.MultiplierPromotionThreshold>0</param.hdl.MultiplierPromotionThreshold>
     <param.hdl.AdderSharingMinimumBitwidth>0</param.hdl.AdderSharingMinimumBitwidth>
-    <param.hdl.ShareMultipliers>true</param.hdl.ShareMultipliers>
+    <param.hdl.ShareMultipliers>false</param.hdl.ShareMultipliers>
     <param.hdl.ShareAdders>false</param.hdl.ShareAdders>
     <param.hdl.ConstantMultiplierOptimization>option.hdl.NONE</param.hdl.ConstantMultiplierOptimization>
     <param.hdl.LoopOptimization>option.hdl.LoopNone</param.hdl.LoopOptimization>
@@ -945,7 +1327,6 @@
       <param.hdl.MultiplierSharingMinimumBitwidth />
       <param.hdl.MultiplierPromotionThreshold />
       <param.hdl.AdderSharingMinimumBitwidth />
-      <param.hdl.ShareMultipliers />
       <param.hdl.ShareAdders />
       <param.hdl.ConstantMultiplierOptimization />
       <param.hdl.LoopOptimization />
@@ -1055,8 +1436,8 @@
       <param.hdl.EmbeddedSystemProjectFolder />
     </unset>
     <fileset.entrypoints>
-      <file custom-data-expanded="false" value="${PROJECT_ROOT}\conv3x3x3_stream.m">
-        <Inputs fileName="conv3x3x3_stream.m" functionName="conv3x3x3_stream">
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}\systolic_4x4.m">
+        <Inputs fileName="systolic_4x4.m" functionName="systolic_4x4">
           <Input Name="pixel">
             <Class>uint8</Class>
             <Size>1 x 3</Size>
@@ -1065,7 +1446,31 @@
             <UserDefined>false</UserDefined>
             <Complex>false</Complex>
           </Input>
-          <Input Name="filter">
+          <Input Name="filter0">
+            <Class>int8</Class>
+            <Size>3 x 3 x 3</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+            <Complex>false</Complex>
+          </Input>
+          <Input Name="filter1">
+            <Class>int8</Class>
+            <Size>3 x 3 x 3</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+            <Complex>false</Complex>
+          </Input>
+          <Input Name="filter2">
+            <Class>int8</Class>
+            <Size>3 x 3 x 3</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+            <Complex>false</Complex>
+          </Input>
+          <Input Name="filter3">
             <Class>int8</Class>
             <Size>3 x 3 x 3</Size>
             <Value />
@@ -1085,7 +1490,7 @@
       </file>
     </fileset.entrypoints>
     <fileset.scriptfile>
-      <file>${PROJECT_ROOT}\test_conv3x3x3_stream.m</file>
+      <file>${PROJECT_ROOT}\test_systolic_4x4.m</file>
     </fileset.scriptfile>
     <fileset.package />
     <build-deliverables />
