@@ -907,7 +907,7 @@
     <var.lastVerifyContext />
     <param.fpDataRoot>C:\Users\user\Desktop\SHREYASHREE\files\systolic_cnn\matlab\codegen\systolic_4x4\fixpt/guiFpReport.mat</param.fpDataRoot>
     <param.fpUserFileChecksum />
-    <var.snapshotChecksum>3370397907</var.snapshotChecksum>
+    <var.snapshotChecksum>2622819710</var.snapshotChecksum>
     <param.fpLastConvertChecksum>3462729095</param.fpLastConvertChecksum>
     <var.FixedPointAnalysisMode>option.FixedPointAnalysisMode.Sim</var.FixedPointAnalysisMode>
     <param.FixedPointUseDesignRanges>false</param.FixedPointUseDesignRanges>
@@ -930,7 +930,7 @@
     <param.hdl.TargetInterface>
       <param.hdl.TargetInterface />
     </param.hdl.TargetInterface>
-    <param.hdl.TargetLanguage>option.hdl.SystemVerilog</param.hdl.TargetLanguage>
+    <param.hdl.TargetLanguage>option.hdl.Verilog</param.hdl.TargetLanguage>
     <param.hdl.CheckConformance>false</param.hdl.CheckConformance>
     <param.hdl.LaunchConformanceReport>false</param.hdl.LaunchConformanceReport>
     <param.hdl.GenerateHDLCode>true</param.hdl.GenerateHDLCode>
@@ -1076,7 +1076,7 @@
     <param.hdl.HDLLintInit />
     <param.hdl.HDLLintCmd />
     <param.hdl.HDLLintTerm />
-    <param.hdl.TargetLanguage>option.hdl.SystemVerilog</param.hdl.TargetLanguage>
+    <param.hdl.TargetLanguage>option.hdl.Verilog</param.hdl.TargetLanguage>
     <param.hdl.CheckConformance>false</param.hdl.CheckConformance>
     <param.hdl.LaunchConformanceReport>false</param.hdl.LaunchConformanceReport>
     <param.hdl.GenerateReport>false</param.hdl.GenerateReport>
@@ -1182,7 +1182,6 @@
       <param.hdl.BuildSpecifiedDirectory />
       <param.hdl.FrameToSampleFlag />
       <param.fixptconv.ShowCoverage />
-      <param.fixptconv.FixedPointStaticAnalysisChecksum />
       <param.fixptconv.ExcludedFixedPointVerificationFiles />
       <param.fixptconv.ExcludedFixedPointSimulationFiles />
       <param.fixptconv.FixptProposalKind />

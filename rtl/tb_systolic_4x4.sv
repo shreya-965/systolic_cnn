@@ -12,15 +12,25 @@ module tb_systolic_4x4;
     logic clk_enable;
     logic reset_1;
 
-    logic [7:0] pixel [0:2];
+    logic [7:0] pixel_0;
+    logic [7:0] pixel_1;
+    logic [7:0] pixel_2;
 
-    logic signed [2:0] filter0 [0:2][0:2][0:2];
-    logic signed [2:0] filter1 [0:2][0:2][0:2];
-    logic signed [2:0] filter2 [0:2][0:2][0:2];
-    logic signed [2:0] filter3 [0:2][0:2][0:2];
+    logic signed [2:0] filter0_0, filter0_1, filter0_2, filter0_3, filter0_4, filter0_5, filter0_6, filter0_7, filter0_8;
+    logic signed [2:0] filter0_9, filter0_10, filter0_11, filter0_12, filter0_13, filter0_14, filter0_15, filter0_16, filter0_17;
+    logic signed [2:0] filter0_18, filter0_19, filter0_20, filter0_21, filter0_22, filter0_23, filter0_24, filter0_25, filter0_26;
+    logic signed [2:0] filter1_0, filter1_1, filter1_2, filter1_3, filter1_4, filter1_5, filter1_6, filter1_7, filter1_8;
+    logic signed [2:0] filter1_9, filter1_10, filter1_11, filter1_12, filter1_13, filter1_14, filter1_15, filter1_16, filter1_17;
+    logic signed [2:0] filter1_18, filter1_19, filter1_20, filter1_21, filter1_22, filter1_23, filter1_24, filter1_25, filter1_26;
+    logic signed [2:0] filter2_0, filter2_1, filter2_2, filter2_3, filter2_4, filter2_5, filter2_6, filter2_7, filter2_8;
+    logic signed [2:0] filter2_9, filter2_10, filter2_11, filter2_12, filter2_13, filter2_14, filter2_15, filter2_16, filter2_17;
+    logic signed [2:0] filter2_18, filter2_19, filter2_20, filter2_21, filter2_22, filter2_23, filter2_24, filter2_25, filter2_26;
+    logic signed [2:0] filter3_0, filter3_1, filter3_2, filter3_3, filter3_4, filter3_5, filter3_6, filter3_7, filter3_8;
+    logic signed [2:0] filter3_9, filter3_10, filter3_11, filter3_12, filter3_13, filter3_14, filter3_15, filter3_16, filter3_17;
+    logic signed [2:0] filter3_18, filter3_19, filter3_20, filter3_21, filter3_22, filter3_23, filter3_24, filter3_25, filter3_26;
 
     logic ce_out;
-    logic signed [12:0] output_rsvd [0:3];
+    logic signed [12:0] output_0, output_1, output_2, output_3;
     logic valid;
     logic ready;
 
@@ -50,14 +60,123 @@ module tb_systolic_4x4;
         .clk(clk),
         .reset(reset),
         .clk_enable(clk_enable),
-        .pixel(pixel),
-        .filter0(filter0),
-        .filter1(filter1),
-        .filter2(filter2),
-        .filter3(filter3),
+        .pixel_0(pixel_0),
+        .pixel_1(pixel_1),
+        .pixel_2(pixel_2),
+        .filter0_0(filter0_0),
+        .filter0_1(filter0_1),
+        .filter0_2(filter0_2),
+        .filter0_3(filter0_3),
+        .filter0_4(filter0_4),
+        .filter0_5(filter0_5),
+        .filter0_6(filter0_6),
+        .filter0_7(filter0_7),
+        .filter0_8(filter0_8),
+        .filter0_9(filter0_9),
+        .filter0_10(filter0_10),
+        .filter0_11(filter0_11),
+        .filter0_12(filter0_12),
+        .filter0_13(filter0_13),
+        .filter0_14(filter0_14),
+        .filter0_15(filter0_15),
+        .filter0_16(filter0_16),
+        .filter0_17(filter0_17),
+        .filter0_18(filter0_18),
+        .filter0_19(filter0_19),
+        .filter0_20(filter0_20),
+        .filter0_21(filter0_21),
+        .filter0_22(filter0_22),
+        .filter0_23(filter0_23),
+        .filter0_24(filter0_24),
+        .filter0_25(filter0_25),
+        .filter0_26(filter0_26),
+        .filter1_0(filter1_0),
+        .filter1_1(filter1_1),
+        .filter1_2(filter1_2),
+        .filter1_3(filter1_3),
+        .filter1_4(filter1_4),
+        .filter1_5(filter1_5),
+        .filter1_6(filter1_6),
+        .filter1_7(filter1_7),
+        .filter1_8(filter1_8),
+        .filter1_9(filter1_9),
+        .filter1_10(filter1_10),
+        .filter1_11(filter1_11),
+        .filter1_12(filter1_12),
+        .filter1_13(filter1_13),
+        .filter1_14(filter1_14),
+        .filter1_15(filter1_15),
+        .filter1_16(filter1_16),
+        .filter1_17(filter1_17),
+        .filter1_18(filter1_18),
+        .filter1_19(filter1_19),
+        .filter1_20(filter1_20),
+        .filter1_21(filter1_21),
+        .filter1_22(filter1_22),
+        .filter1_23(filter1_23),
+        .filter1_24(filter1_24),
+        .filter1_25(filter1_25),
+        .filter1_26(filter1_26),
+        .filter2_0(filter2_0),
+        .filter2_1(filter2_1),
+        .filter2_2(filter2_2),
+        .filter2_3(filter2_3),
+        .filter2_4(filter2_4),
+        .filter2_5(filter2_5),
+        .filter2_6(filter2_6),
+        .filter2_7(filter2_7),
+        .filter2_8(filter2_8),
+        .filter2_9(filter2_9),
+        .filter2_10(filter2_10),
+        .filter2_11(filter2_11),
+        .filter2_12(filter2_12),
+        .filter2_13(filter2_13),
+        .filter2_14(filter2_14),
+        .filter2_15(filter2_15),
+        .filter2_16(filter2_16),
+        .filter2_17(filter2_17),
+        .filter2_18(filter2_18),
+        .filter2_19(filter2_19),
+        .filter2_20(filter2_20),
+        .filter2_21(filter2_21),
+        .filter2_22(filter2_22),
+        .filter2_23(filter2_23),
+        .filter2_24(filter2_24),
+        .filter2_25(filter2_25),
+        .filter2_26(filter2_26),
+        .filter3_0(filter3_0),
+        .filter3_1(filter3_1),
+        .filter3_2(filter3_2),
+        .filter3_3(filter3_3),
+        .filter3_4(filter3_4),
+        .filter3_5(filter3_5),
+        .filter3_6(filter3_6),
+        .filter3_7(filter3_7),
+        .filter3_8(filter3_8),
+        .filter3_9(filter3_9),
+        .filter3_10(filter3_10),
+        .filter3_11(filter3_11),
+        .filter3_12(filter3_12),
+        .filter3_13(filter3_13),
+        .filter3_14(filter3_14),
+        .filter3_15(filter3_15),
+        .filter3_16(filter3_16),
+        .filter3_17(filter3_17),
+        .filter3_18(filter3_18),
+        .filter3_19(filter3_19),
+        .filter3_20(filter3_20),
+        .filter3_21(filter3_21),
+        .filter3_22(filter3_22),
+        .filter3_23(filter3_23),
+        .filter3_24(filter3_24),
+        .filter3_25(filter3_25),
+        .filter3_26(filter3_26),
         .reset_1(reset_1),
         .ce_out(ce_out),
-        .output_rsvd(output_rsvd),
+        .output_0(output_0),
+        .output_1(output_1),
+        .output_2(output_2),
+        .output_3(output_3),
         .valid(valid),
         .ready(ready)
     );
@@ -71,21 +190,11 @@ module tb_systolic_4x4;
         reset_1 = 1'b1;
         clk_enable = 1'b1;
 
-        pixel[0] = 8'd0;
-        pixel[1] = 8'd0;
-        pixel[2] = 8'd0;
-
-        for (kr = 0; kr < 3; kr = kr + 1)
-            for (kc = 0; kc < 3; kc = kc + 1)
-                for (ch = 0; ch < 3; ch = ch + 1) begin
-                    filter0[kr][kc][ch] = 3'sd0;
-                    filter1[kr][kc][ch] = 3'sd0;
-                    filter2[kr][kc][ch] = 3'sd0;
-                    filter3[kr][kc][ch] = 3'sd0;
-                end
+        pixel_0 = 8'd0;
+        pixel_1 = 8'd0;
+        pixel_2 = 8'd0;
 
         $readmemh("image.hex", image_mem);
-        $readmemh("filter.hex", filter_mem);
         $readmemh("expected.hex", expected_mem);
 
         load_filters();
@@ -109,9 +218,9 @@ module tb_systolic_4x4;
 
         @(negedge clk);
 
-        pixel[0] = image_mem[0];
-        pixel[1] = image_mem[1];
-        pixel[2] = image_mem[2];
+        pixel_0 = image_mem[0];
+        pixel_1 = image_mem[1];
+        pixel_2 = image_mem[2];
 
         pixel_count = 1;
 
@@ -130,7 +239,12 @@ module tb_systolic_4x4;
                 for (f = 0; f < 4; f = f + 1) begin
 
                     expected_value = $signed(expected_mem[output_count + f]);
-                    actual_value = $signed(output_rsvd[f]);
+                    case (f)
+                        0: actual_value = $signed(output_0);
+                        1: actual_value = $signed(output_1);
+                        2: actual_value = $signed(output_2);
+                        3: actual_value = $signed(output_3);
+                    endcase
 
                     if (actual_value !== expected_value) begin
 
@@ -172,9 +286,9 @@ module tb_systolic_4x4;
                     repeat (7) begin
                         @(negedge clk);
 
-                        pixel[0] = 8'd0;
-                        pixel[1] = 8'd0;
-                        pixel[2] = 8'd0;
+                        pixel_0 = 8'd0;
+                        pixel_1 = 8'd0;
+                        pixel_2 = 8'd0;
 
                         @(posedge clk);
 
@@ -189,7 +303,12 @@ module tb_systolic_4x4;
                             for (f = 0; f < 4; f = f + 1) begin
 
                                 expected_value = $signed(expected_mem[output_count + f]);
-                                actual_value = $signed(output_rsvd[f]);
+                                case (f)
+                        0: actual_value = $signed(output_0);
+                        1: actual_value = $signed(output_1);
+                        2: actual_value = $signed(output_2);
+                        3: actual_value = $signed(output_3);
+                    endcase
 
                                 if (actual_value !== expected_value) begin
 
@@ -220,9 +339,9 @@ module tb_systolic_4x4;
                 if (pixel_count < IMAGE_PIXELS) begin
                     @(negedge clk);
 
-                    pixel[0] = image_mem[pixel_count*3];
-                    pixel[1] = image_mem[pixel_count*3+1];
-                    pixel[2] = image_mem[pixel_count*3+2];
+                    pixel_0 = image_mem[pixel_count*3];
+                    pixel_1 = image_mem[pixel_count*3+1];
+                    pixel_2 = image_mem[pixel_count*3+2];
 
                     pixel_count = pixel_count + 1;
                 end
@@ -233,9 +352,9 @@ module tb_systolic_4x4;
                 repeat (9) begin
                     @(negedge clk);
 
-                    pixel[0] = 8'd0;
-                    pixel[1] = 8'd0;
-                    pixel[2] = 8'd0;
+                    pixel_0 = 8'd0;
+                    pixel_1 = 8'd0;
+                    pixel_2 = 8'd0;
 
                     @(posedge clk);
 
@@ -250,7 +369,12 @@ module tb_systolic_4x4;
                         for (f = 0; f < 4; f = f + 1) begin
 
                             expected_value = $signed(expected_mem[output_count + f]);
-                            actual_value = $signed(output_rsvd[f]);
+                            case (f)
+                        0: actual_value = $signed(output_0);
+                        1: actual_value = $signed(output_1);
+                        2: actual_value = $signed(output_2);
+                        3: actual_value = $signed(output_3);
+                    endcase
 
                             if (actual_value !== expected_value) begin
 
@@ -310,45 +434,116 @@ module tb_systolic_4x4;
 
 
     task load_filters;
-
         begin
-
-            idx = 0;
-
-            for (kr = 0; kr < 3; kr = kr + 1)
-                for (kc = 0; kc < 3; kc = kc + 1)
-                    for (ch = 0; ch < 3; ch = ch + 1) begin
-                        filter0[kr][kc][ch] =
-                            $signed(filter_mem[idx]);
-                        idx = idx + 1;
-                    end
-
-            for (kr = 0; kr < 3; kr = kr + 1)
-                for (kc = 0; kc < 3; kc = kc + 1)
-                    for (ch = 0; ch < 3; ch = ch + 1) begin
-                        filter1[kr][kc][ch] =
-                            $signed(filter_mem[idx]);
-                        idx = idx + 1;
-                    end
-
-            for (kr = 0; kr < 3; kr = kr + 1)
-                for (kc = 0; kc < 3; kc = kc + 1)
-                    for (ch = 0; ch < 3; ch = ch + 1) begin
-                        filter2[kr][kc][ch] =
-                            $signed(filter_mem[idx]);
-                        idx = idx + 1;
-                    end
-
-            for (kr = 0; kr < 3; kr = kr + 1)
-                for (kc = 0; kc < 3; kc = kc + 1)
-                    for (ch = 0; ch < 3; ch = ch + 1) begin
-                        filter3[kr][kc][ch] =
-                            $signed(filter_mem[idx]);
-                        idx = idx + 1;
-                    end
-
+            filter0_0 = 3'sd3;
+            filter0_1 = -3'sd1;
+            filter0_2 = 3'sd2;
+            filter0_3 = 3'sd2;
+            filter0_4 = 3'sd2;
+            filter0_5 = -3'sd3;
+            filter0_6 = -3'sd2;
+            filter0_7 = 3'sd0;
+            filter0_8 = 3'sd3;
+            filter0_9 = 3'sd2;
+            filter0_10 = -3'sd2;
+            filter0_11 = -3'sd3;
+            filter0_12 = 3'sd1;
+            filter0_13 = 3'sd1;
+            filter0_14 = 3'sd2;
+            filter0_15 = -3'sd3;
+            filter0_16 = 3'sd1;
+            filter0_17 = -3'sd3;
+            filter0_18 = 3'sd0;
+            filter0_19 = 3'sd3;
+            filter0_20 = 3'sd1;
+            filter0_21 = -3'sd2;
+            filter0_22 = 3'sd0;
+            filter0_23 = -3'sd3;
+            filter0_24 = -3'sd2;
+            filter0_25 = -3'sd3;
+            filter0_26 = 3'sd0;
+            filter1_0 = 3'sd1;
+            filter1_1 = -3'sd2;
+            filter1_2 = 3'sd2;
+            filter1_3 = 3'sd2;
+            filter1_4 = -3'sd3;
+            filter1_5 = 3'sd0;
+            filter1_6 = 3'sd1;
+            filter1_7 = -3'sd1;
+            filter1_8 = -3'sd2;
+            filter1_9 = -3'sd1;
+            filter1_10 = -3'sd1;
+            filter1_11 = 3'sd3;
+            filter1_12 = 3'sd0;
+            filter1_13 = 3'sd2;
+            filter1_14 = 3'sd2;
+            filter1_15 = 3'sd3;
+            filter1_16 = 3'sd2;
+            filter1_17 = 3'sd1;
+            filter1_18 = -3'sd1;
+            filter1_19 = -3'sd1;
+            filter1_20 = -3'sd3;
+            filter1_21 = 3'sd1;
+            filter1_22 = 3'sd1;
+            filter1_23 = 3'sd2;
+            filter1_24 = -3'sd3;
+            filter1_25 = 3'sd3;
+            filter1_26 = 3'sd0;
+            filter2_0 = -3'sd2;
+            filter2_1 = 3'sd3;
+            filter2_2 = 3'sd1;
+            filter2_3 = 3'sd3;
+            filter2_4 = 3'sd2;
+            filter2_5 = 3'sd2;
+            filter2_6 = 3'sd1;
+            filter2_7 = 3'sd1;
+            filter2_8 = -3'sd2;
+            filter2_9 = 3'sd0;
+            filter2_10 = -3'sd2;
+            filter2_11 = -3'sd2;
+            filter2_12 = 3'sd0;
+            filter2_13 = 3'sd2;
+            filter2_14 = 3'sd2;
+            filter2_15 = 3'sd3;
+            filter2_16 = -3'sd1;
+            filter2_17 = 3'sd1;
+            filter2_18 = 3'sd0;
+            filter2_19 = 3'sd2;
+            filter2_20 = -3'sd2;
+            filter2_21 = 3'sd3;
+            filter2_22 = -3'sd1;
+            filter2_23 = 3'sd0;
+            filter2_24 = -3'sd1;
+            filter2_25 = 3'sd2;
+            filter2_26 = -3'sd2;
+            filter3_0 = 3'sd0;
+            filter3_1 = 3'sd1;
+            filter3_2 = 3'sd2;
+            filter3_3 = -3'sd1;
+            filter3_4 = 3'sd2;
+            filter3_5 = -3'sd1;
+            filter3_6 = 3'sd0;
+            filter3_7 = 3'sd3;
+            filter3_8 = 3'sd0;
+            filter3_9 = 3'sd1;
+            filter3_10 = 3'sd3;
+            filter3_11 = 3'sd0;
+            filter3_12 = 3'sd1;
+            filter3_13 = 3'sd2;
+            filter3_14 = 3'sd1;
+            filter3_15 = -3'sd3;
+            filter3_16 = -3'sd3;
+            filter3_17 = 3'sd3;
+            filter3_18 = 3'sd3;
+            filter3_19 = -3'sd2;
+            filter3_20 = 3'sd1;
+            filter3_21 = -3'sd2;
+            filter3_22 = -3'sd2;
+            filter3_23 = 3'sd0;
+            filter3_24 = -3'sd1;
+            filter3_25 = 3'sd3;
+            filter3_26 = 3'sd3;
         end
-
     endtask
 
 endmodule
